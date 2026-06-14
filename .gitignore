@@ -1,0 +1,26 @@
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+.idea/
+supabase/.temp/
+
+# Environment variables (ne jamais committer les vraies cles)
+.env
+server/.env
+.env*.local
+
+# Common ignores
+node_modules
+.next/
+.DS_Store
+
+# Flutter mobile
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/build/
+mobile/.packages

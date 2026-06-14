@@ -1,0 +1,47 @@
+services:
+  database:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: supcontent
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-supcontent_dev}
+      POSTGRES_DB: supcontent
+    volumes:
+      - supcontent_pg:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U supcontent"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: ./server
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      LASTFM_API_KEY: ${LASTFM_API_KEY}
+    depends_on:
+      database:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      SUPCONTENT_API_URL: http://api:4000
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+      LASTFM_API_KEY: ${LASTFM_API_KEY}
+    depends_on:
+      - api
+
+volumes:
+  supcontent_pg:
