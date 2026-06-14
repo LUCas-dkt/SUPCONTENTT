@@ -1,71 +1,72 @@
 # Guide correcteur — SUPCONTENT
 
-> **Depot Git PRIVE.** Ne commitez pas `.env` (GitHub bloque les secrets Google). Utilisez `.env.example`.
+Projet fin d'année Culture Connect.
 
-## Demarrage en 4 commandes
+**Depot Git :** https://github.com/LUCas-dkt/SUPCONTENTT (prive jusqu'a la date limite Moodle)
+
+**Archive zip :** lancer `npm run package:rendu` → fichier `SUPCONTENT-rendu.zip`
+
+---
+
+## Lancer le projet
+
+Prerequis : Node.js 20+, Docker Desktop (allume), Git.
 
 ```powershell
+git clone https://github.com/LUCas-dkt/SUPCONTENTT.git
+cd SUPCONTENTT
 npm install
+copy .env.example .env
+```
+
+Mettre votre cle Last.fm dans `.env` (`LASTFM_API_KEY`). Compte gratuit sur https://www.last.fm/api/account/create
+
+```powershell
 npm run db:start
 npm run db:reset
 npm run dev:all
 ```
 
-Verification : `npm run dev:check`
+Controle rapide : `npm run dev:check`
 
-| Service | URL |
-|---------|-----|
-| Web | http://localhost:3000 |
-| API | http://localhost:4000/health |
-| Studio BDD | http://127.0.0.1:30004 |
-| Emails (Mailpit) | http://127.0.0.1:30005 |
+- Site : http://localhost:3000
+- API : http://localhost:4000/health
+- BDD (Studio) : http://127.0.0.1:30004
+- Mails test : http://127.0.0.1:30005
 
-Les variables sont dans **`.env.example`** — copiez vers `.env` à la racine :
+Pas de `.env` dans le depot : copier `.env.example` et remplir la cle Last.fm (on peut vous l'envoyer en prive).
 
-```powershell
-copy .env.example .env
-# Editez .env : LASTFM_API_KEY (obligatoire), GOOGLE_* (optionnel, OAuth)
-```
+---
 
-## Comptes de demonstration
+## Comptes test
 
-| Email | Profil | Role |
-|-------|--------|------|
-| `ldiakite641@gmail.com` | @ldiakite641 | **Administrateur** (`/admin`) |
-| `yazzeun91180@gmail.com` | @yazzeun91180 | Utilisateur (tests follow / messages) |
-| `ldiakite641+1@gmail.com` | @ldiakite6411 | Utilisateur secondaire |
+| Email | Role |
+|-------|------|
+| ldiakite641@gmail.com | Admin (`/admin`) |
+| yazzeun91180@gmail.com | Utilisateur |
+| ldiakite641+1@gmail.com | Utilisateur |
 
-Les mots de passe ne sont pas stockes en clair (auth Supabase). Pour tester : creer un compte via `/auth/sign-up` ou utiliser un compte existant connu de l'equipe.
+Mot de passe : compte deja cree par l'equipe ou inscription via `/auth/sign-up`. Apres `db:reset`, le seed promote ldiakite641@gmail.com en admin.
 
-Apres `npm run db:reset`, le compte `ldiakite641@gmail.com` est automatiquement promu admin (`supabase/seed.sql`).
+---
 
-## Parcours demo (5 min)
+## Demo rapide
 
-1. Accueil + recherche sans compte
-2. Connexion `ldiakite641@gmail.com`
-3. Favori / liste / critique sur un album
-4. Follow @yazzeun91180 → notification
-5. Messages (abonnement mutuel requis entre 2 comptes)
-6. `/admin` — moderation, coups de coeur
-7. `/settings` — export JSON/CSV
+1. Accueil + recherche (sans connexion)
+2. Se connecter
+3. Ajouter un favori, une liste ou une critique sur un album
+4. Suivre un autre user → notification
+5. Messages (il faut etre abonnes mutuellement)
+6. `/admin` pour la modération
+7. `/settings` pour exporter ses donnees
 
-## Mobile emulateur
+Mobile (optionnel) : `npm run mobile:run` avec l'emulateur Android. Connexion email/mot de passe de preference.
 
-```powershell
-npm run mobile:emulator
-npm run mobile:run
-```
+---
 
-Connexion par **email/mot de passe** (pas Google en WebView).
+## Docs
 
-## Architecture
+- Technique : `docs/DOCUMENTATION_TECHNIQUE.md`
+- Utilisateur : `docs/MANUEL_UTILISATEUR.md`
 
-```
-Web / WebView → Next.js :3000 → API Express :4000 → Last.fm
-              ↘ Supabase :30001 (auth + social)
-```
-
-## Documentation
-
-- [Documentation technique](docs/DOCUMENTATION_TECHNIQUE.md)
-- [Manuel utilisateur](docs/MANUEL_UTILISATEUR.md)
+Architecture : Next.js (3000) → API Express (4000) → Last.fm, et Supabase local (30001) pour auth + donnees sociales.

@@ -1,74 +1,47 @@
 # Manuel utilisateur — SUPCONTENT
 
-## Bienvenue
+SUPCONTENT sert a decouvrir de la musique (via Last.fm), noter des albums, suivre d'autres membres et discuter.
 
-SUPCONTENT est votre réseau social musical : découvrez des artistes, gérez votre bibliothèque, partagez des critiques et échangez avec la communauté.
+## Demarrer
 
-## Sans compte
+Ouvrez le site (en local : http://localhost:3000). Sans compte vous pouvez deja parcourir l'accueil, les tendances, la recherche et les fiches artistes/albums.
 
-Vous pouvez **sans inscription** :
-- Parcourir l'accueil, les tendances et la recherche
-- Consulter les fiches artistes, albums et morceaux
-- Voir les profils publics
+Pour sauvegarder des favoris, ecrire des critiques ou envoyer des messages : creez un compte (**S'inscrire**). En dev local, le mail de confirmation arrive dans Mailpit (http://127.0.0.1:30005).
 
-Pour noter, commenter, suivre ou envoyer des messages : **créez un compte**.
+## Compte et profil
 
-## Créer un compte
+Inscription par email/mot de passe ou Google. Ensuite, menu profil → **Parametres** pour changer le nom affiche, la bio, le theme (clair/sombre) et les notifications.
 
-1. Cliquez sur **Commencer gratuitement** ou **S'inscrire**
-2. Email + mot de passe, ou **Continuer avec Google**
-3. Confirmez l'email (en local : ouvrez Mailpit sur http://127.0.0.1:30005)
+## Musique
 
-## Bibliothèque personnelle
+Sur une fiche album ou morceau :
+- statuts **A ecouter**, **En cours**, **Termine**, **Abandonne** (menu Bibliotheque)
+- **Favoris** et **Collections**
+- **Listes** (publiques ou privees)
+- **Critique** : note sur 10 + texte
 
-Sur une fiche album, utilisez les boutons de statut :
-- **À écouter**
-- **En cours**
-- **Terminé**
-- **Abandonné**
+Tout est retrouvable dans **Bibliotheque**, **Favoris**, **Collections**, **Listes**.
 
-Retrouvez tout dans **Bibliothèque** (menu) avec statistiques par statut.
+## Communaute
 
-## Collections et listes
+- **Decouvrir** : chercher des utilisateurs
+- **Suivre** quelqu'un depuis son profil
+- Fil d'activite sur l'accueil quand vous etes connecte
+- **Messages** : uniquement si vous vous suivez mutuellement
+- **Notifications** (icone cloche)
 
-- **Collections** : regroupements personnels d'œuvres
-- **Listes** : listes thématiques (publiques ou privées)
-- Actions via le menu **⋯** ou les boutons sur chaque fiche
+La recherche du header permet aussi de trouver des **utilisateurs** et des **listes publiques**.
 
-## Critiques et communauté
+## Admin
 
-1. Sur une fiche, **Écrire une critique** (note 1–10 + texte)
-2. Consultez les avis des autres dans la section **Communauté**
-3. **J'aime** et **Commentaires** sur les critiques
-4. **Signaler** un contenu inapproprié
+Page `/admin` pour les comptes administrateur : signalements, coups de coeur sur les critiques.
 
-## Réseau social
+## Mobile
 
-- **Découvrir** : trouver des utilisateurs
-- **Suivre** / **Ne plus suivre** sur un profil
-- **Fil d'actualité** (accueil, connecté) : activités des personnes suivies
-- **Messages** : chat privé (abonnement mutuel requis)
+L'app Flutter ouvre le meme site en WebView. Meme compte, memes fonctions. Sur emulateur, connexion email/mot de passe conseillee.
 
-## Recherche avancée
+## Export
 
-Barre **Recherche** : onglets Artistes, Albums, Morceaux, **Utilisateurs**, **Listes publiques**.
+**Parametres** → export JSON ou CSV de vos donnees.
 
-## Notifications
-
-Icône cloche : nouveaux abonnés, j'aime sur vos critiques, commentaires. Mise à jour automatique (polling).
-
-## Paramètres
-
-**Paramètres** (menu profil) :
-- Nom affiché, biographie, site web
-- Thème clair / sombre / système
-- Préférences de notifications
-- **Exporter mes données** (JSON, conformité RGPD)
-
-## Application mobile
-
-L'application mobile (Flutter) affiche la même interface que le site web dans une application installable. Connectez-vous avec le **même compte** : bibliothèque, messages, notifications et critiques fonctionnent identiquement.
-
-## Aide
-
-Données musicales fournies par Last.fm. En cas de problème technique, contactez l'équipe projet.
+Donnees musicales : Last.fm. Probleme technique : contacter l'equipe projet.

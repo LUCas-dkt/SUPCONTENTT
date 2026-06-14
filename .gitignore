@@ -24,3 +24,9 @@ mobile/.flutter-plugins
 mobile/.flutter-plugins-dependencies
 mobile/build/
 mobile/.packages
+
+# Archive rendu Moodle
+SUPCONTENT-rendu/
+SUPCONTENT-rendu.zip
+SUPCONTENT-rendu-OK.zip
+SUPCONTENT-rendu-new.zip

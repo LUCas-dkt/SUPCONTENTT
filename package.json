@@ -9,6 +9,7 @@
     "dev:check": "powershell -ExecutionPolicy Bypass -File scripts/check-dev.ps1",
     "dev:iphone": "powershell -ExecutionPolicy Bypass -File scripts/iphone-lan.ps1",
     "dev:iphone:fix": "scripts\\iphone-firewall.cmd",
+    "package:rendu": "powershell -ExecutionPolicy Bypass -File scripts/package-rendu.ps1",
     "dev:all": "powershell -ExecutionPolicy Bypass -File scripts/start-dev.ps1",
     "env:init": "powershell -ExecutionPolicy Bypass -File scripts/init-env.ps1",
     "build": "next build",
